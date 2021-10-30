@@ -4,6 +4,7 @@ class UserController {
     async createUser(req, res) {
         const {task, isDone} = req.body
         const newTask = await db.query('INSERT INTO todo_list (task, isDone) values ($1, $2) RETURNING *', [task, isDone])
+        console.log(req.body)
 
         res.json(newTask.rows[0])
     }

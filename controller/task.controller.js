@@ -2,7 +2,7 @@ const db = require('../db/connect')
 
 class TaskController {
     async createTask(req, res) {
-        const task = req.body;
+        const {task} = req.body;
         try {
             const newTask = await db.query('INSERT INTO todo (task) values ($1) RETURNING *', [task])
             res.json(newTask.rows[0])
